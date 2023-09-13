@@ -1,0 +1,265 @@
+Scaffold(
+        body: SafeArea(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Container(
+                color: Colors.transparent,
+                height: 60,
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    SizedBox(
+                        height: 35,
+                        child: Expanded(
+                            child: Image.asset(
+                          ImageAssets.craftyBayLogoNAVpng,
+                          fit: BoxFit.fill,
+                          alignment: Alignment.centerLeft,
+                        ))),
+                    const Spacer(),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Row(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              // handle button press
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey.shade200,
+                              ),
+                              child: const Icon(
+                                Icons.person_2_outlined,
+                                color: Colors.black45,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              // handle button press
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey.shade200,
+                              ),
+                              child: const Icon(
+                                Icons.call_outlined,
+                                color: Colors.black45,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              // handle button press
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey.shade200,
+                              ),
+                              child: const Icon(
+                                Icons.notifications_on_outlined,
+                                color: Colors.black45,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                // color: Colors.grey,
+                height: 45,
+                width: double.infinity,
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent)),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: AppColors.primaryColor, width: 1)),
+                    filled: true,
+                    contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                    fillColor: Colors.grey.shade200,
+                    hintText: "Search",
+                    prefixIcon: IconButton(
+                      icon: const Icon(Icons.search_rounded),
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Container(
+                height: 160,
+                width: double.infinity,
+                color: AppColors.primaryColor,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  const Text(
+                    "All Categories",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  const Spacer(),
+                  TextButton(onPressed: () {}, child: const Text("See All"))
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      // handle button press
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            shape: BoxShape.rectangle,
+                            color: AppColors.primaryColor.withOpacity(.15),
+                          ),
+                          child: const Icon(
+                            Icons.monitor,
+                            size: 50,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        const Text(
+                          "Electronics",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryColor),
+                        )
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      // handle button press
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            shape: BoxShape.rectangle,
+                            color: AppColors.primaryColor.withOpacity(.15),
+                          ),
+                          child: const Icon(
+                            Icons.fastfood_outlined,
+                            size: 50,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        const Text("Food",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryColor))
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      // handle button press
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            shape: BoxShape.rectangle,
+                            color: AppColors.primaryColor.withOpacity(.15),
+                          ),
+                          child: const Icon(
+                            Icons.diamond_outlined,
+                            size: 50,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        const Text("Fashion",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryColor))
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      // handle button press
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            shape: BoxShape.rectangle,
+                            color: AppColors.primaryColor.withOpacity(.15),
+                          ),
+                          child: const Icon(
+                            Icons.chair_outlined,
+                            size: 50,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        const Text("Furniture",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryColor))
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    ));
