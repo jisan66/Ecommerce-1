@@ -3,14 +3,11 @@ import 'package:ecommerce/presentation/utility/image_assets.dart';
 import 'package:ecommerce/presentation/widgets/home_carousel_slider.dart';
 import 'package:ecommerce/presentation/widgets/section_header.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../widgets/category_card.dart';
 import '../widgets/circular_icon_button.dart';
 import '../widgets/product_card.dart';
-
-import '../utility/app_colors.dart';
-import '../widgets/category_card.dart';
-import '../widgets/circular_icon_button.dart';
-import '../widgets/product_card.dart';
+import 'category_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -81,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 8,
               ),
-              SectionHeader(title: "All Categories", onTap: () {}),
+              SectionHeader(title: "All Categories", onTap: () {Get.to(const CategoryScreen());}),
               const SizedBox(
                 height: 16,
               ),
