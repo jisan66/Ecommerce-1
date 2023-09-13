@@ -1,4 +1,6 @@
+import 'package:ecommerce/presentation/screens/category_screen.dart';
 import 'package:ecommerce/presentation/screens/home_screen.dart';
+import 'package:ecommerce/presentation/screens/wish_list_screen.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +18,9 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   final List<Widget> _screens =
       const [
         HomeScreen(),
+        CategoryScreen(),
         HomeScreen(),
-        HomeScreen(),
-        HomeScreen(),
+        WishListScreen(),
       ];
 
   @override

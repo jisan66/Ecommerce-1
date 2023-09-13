@@ -14,11 +14,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: const Text("Category List",style: TextStyle(
-          color: AppColors.primaryColor
-        ),),
+          color: AppColors.primaryColor,
+        )
+        ),
         leading: const BackButton(color: AppColors.primaryColor,),
       ),
       body: Padding(
