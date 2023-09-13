@@ -3,6 +3,9 @@ import 'package:ecommerce/presentation/utility/image_assets.dart';
 import 'package:ecommerce/presentation/widgets/home_carousel_slider.dart';
 import 'package:ecommerce/presentation/widgets/section_header.dart';
 import 'package:flutter/material.dart';
+import '../widgets/category_card.dart';
+import '../widgets/circular_icon_button.dart';
+import '../widgets/product_card.dart';
 
 import '../utility/app_colors.dart';
 import '../widgets/category_card.dart';
