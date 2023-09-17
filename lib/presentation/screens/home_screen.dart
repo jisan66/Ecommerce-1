@@ -4,10 +4,10 @@ import 'package:ecommerce/presentation/widgets/home_carousel_slider.dart';
 import 'package:ecommerce/presentation/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../state_holders/main_bottom_nav_controller.dart';
 import '../widgets/category_card.dart';
 import '../widgets/circular_icon_button.dart';
 import '../widgets/product_card.dart';
-import 'category_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 8,
               ),
-              SectionHeader(title: "All Categories", onTap: () {Get.to(const CategoryScreen());}),
+              SectionHeader(title: "All Categories", onTap: () {Get.find<MainBottomNavController>().changeScreen(1);}),
               const SizedBox(
                 height: 16,
               ),
@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 8,
               ),
-              SectionHeader(title: "Popular", onTap: () {}),
+              SectionHeader(title: "Popular", onTap: () {Get.find<MainBottomNavController>().changeScreen(3);}),
               SizedBox(
                 height: 160,
                 width: double.infinity,
@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return const ProductCard();
                 }),
               ),
-              SectionHeader(title: "Special", onTap: () {}),
+              SectionHeader(title: "Special", onTap: () {Get.find<MainBottomNavController>().changeScreen(3);}),
               SizedBox(
                 height: 160,
                 width: double.infinity,
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       return const ProductCard();
                     }),
               ),
-              SectionHeader(title: "New", onTap: () {}),
+              SectionHeader(title: "New", onTap: () {Get.find<MainBottomNavController>().changeScreen(3);}),
               SizedBox(
                 height: 160,
                 width: double.infinity,

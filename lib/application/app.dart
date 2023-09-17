@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ class CraftyBay extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner:false,
+      initialBinding: StateHoldersBinder(),
       home: const SplashScreen(),
       theme: ThemeData(
           primarySwatch:
@@ -46,3 +48,13 @@ class CraftyBay extends StatelessWidget {
     );
   }
 }
+
+class StateHoldersBinder extends Bindings
+{
+
+
+
+  @override
+  void dependencies() {
+    Get.put(MainBottomNavController());
+  }}
