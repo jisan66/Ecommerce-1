@@ -1,10 +1,8 @@
-import 'package:ecommerce/presentation/screens/home_screen.dart';
 import 'package:ecommerce/presentation/screens/main_bottom_nav_screen.dart';
 import 'package:ecommerce/presentation/utility/image_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'auth/email_verification_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
