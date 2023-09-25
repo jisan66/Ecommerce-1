@@ -65,7 +65,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             stepValue: 1,
                             value: 1,
                             onChange: (value) {
-                              print(value);
                             }),
                       ],
                     ),
@@ -181,16 +180,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                   border:
-                                      Border.all(color: AppColors.primaryColor),
+                                      Border.all(color: Colors.grey),
                                   color: _selectedSize == index
                                       ? AppColors.primaryColor
                                       : Colors.transparent),
                               child: Text(
                                 size[index],
-                                style: TextStyle(fontSize: 16,
+                                style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,
                                     color: _selectedSize == index
                                         ? Colors.white
-                                        : AppColors.primaryColor),
+                                        : Colors.grey),
                               ),
                             ),
                           );
@@ -255,7 +254,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ElevatedButton(
                     onPressed: () {},
                     child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.0),
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
                         "Add To Cart",
                         style: TextStyle(fontSize: 12),

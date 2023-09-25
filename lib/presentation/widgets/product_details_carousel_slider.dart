@@ -51,8 +51,8 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
                 List<Widget> list = [];
                 for (int i = 0; i < 5; i++) {
                   list.add(Container(
-                    width: 15,
-                    height: 15,
+                    width: 8,
+                    height: 8,
                     margin: const EdgeInsets.symmetric(horizontal: 4),
                     decoration: BoxDecoration(
 
