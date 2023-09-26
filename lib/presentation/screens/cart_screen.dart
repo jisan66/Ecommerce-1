@@ -54,7 +54,7 @@ class _CartScreenState extends State<CartScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Price",
+                      "Total Price",
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,

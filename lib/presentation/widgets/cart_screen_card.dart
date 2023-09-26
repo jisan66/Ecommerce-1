@@ -73,7 +73,7 @@ class CartScreenCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          "\$1000",
+                          "\$100",
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
