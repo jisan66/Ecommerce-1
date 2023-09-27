@@ -1,5 +1,4 @@
 import 'package:ecommerce/presentation/screens/auth/email_verification_screen.dart';
-import 'package:ecommerce/presentation/screens/main_bottom_nav_screen.dart';
 import 'package:ecommerce/presentation/utility/image_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

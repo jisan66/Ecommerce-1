@@ -1,8 +1,8 @@
+import 'package:ecommerce/presentation/state_holders/email_verification_controller.dart';
 import 'package:ecommerce/presentation/utility/image_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
 import 'otp_verification_screen.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
@@ -61,11 +61,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   validator: (String? emailText) {
                     if (emailText?.isEmpty ?? true) {
                       return "Enter email address";
-                    } else if (emailText?.isEmail == false) {
+                    } else if (emailText!.isEmail == false) {
                       return "Enter a valid address";
-                    } else {
-                      return null;
                     }
+                    return null;
                   },
                 ),
                 const SizedBox(
@@ -73,18 +72,46 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 ),
                 SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if(_formKey.currentState!.validate()){
-                        Get.to(const OTPVerificationScreen());}
-                      },
-                      child: const Text("Next"),
-                    ))
+                    child: GetBuilder<EmailVerificationController>(
+                        builder: (controller) {
+                      if (controller.emailVerificationInProgress) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return ElevatedButton(
+                        onPressed: () async{
+                          if (_formKey.currentState!.validate()) {
+                            // Get.to(const OTPVerificationScreen());
+                            verifyEmail(controller);
+                            _emailTEController.clear();
+                          }
+                        },
+                        child: const Text("Next"),
+                      );
+                    }))
               ],
             ),
           ),
         ),
       )),
     );
+  }
+
+  Future<void> verifyEmail(EmailVerificationController controller) async {
+    final bool response =
+        await controller.verifyEmail(_emailTEController.text.trim());
+    if (response==true) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("OTP sent to your email")));
+      }
+      Get.to(() => const OTPVerificationScreen());
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Email verification failed! Try again!")));
+      }
+    }
   }
 }
