@@ -84,7 +84,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                           if (_formKey.currentState!.validate()) {
                             // Get.to(const OTPVerificationScreen());
                             verifyEmail(controller);
-                            _emailTEController.clear();
                           }
                         },
                         child: const Text("Next"),
@@ -106,7 +105,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("OTP sent to your email")));
       }
-      Get.to(() => const OTPVerificationScreen());
+      Get.to(() => OTPVerificationScreen(email: _emailTEController.text.trim()));
     } else {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
