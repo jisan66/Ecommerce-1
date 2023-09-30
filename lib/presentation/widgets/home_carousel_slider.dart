@@ -34,7 +34,7 @@ class _HomeSliderState extends State<HomeSlider> {
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     decoration:
-                        BoxDecoration(color: AppColors.primaryColor,borderRadius: BorderRadius.circular(10)),
+                        BoxDecoration(color: Colors.grey.shade200,borderRadius: BorderRadius.circular(10)),
                     child: Image.network(sliderData.image ?? ""));
               },
             );

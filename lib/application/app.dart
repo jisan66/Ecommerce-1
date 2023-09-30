@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/state_holders/category_controller.dart';
 import 'package:ecommerce/presentation/state_holders/email_verification_controller.dart';
 import 'package:ecommerce/presentation/state_holders/home_slide_controller.dart';
 import 'package:ecommerce/presentation/state_holders/main_bottom_nav_controller.dart';
@@ -63,4 +64,5 @@ class StateHoldersBinder extends Bindings
     Get.put(EmailVerificationController());
     Get.put(OTPVerificationController());
     Get.put(HomeSlideController());
+    Get.put(CategoryController());
   }}

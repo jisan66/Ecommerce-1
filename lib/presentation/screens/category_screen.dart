@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/state_holders/category_controller.dart';
 import 'package:ecommerce/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:ecommerce/presentation/widgets/category_card.dart';
@@ -33,19 +34,31 @@ class _CategoryScreenState extends State<CategoryScreen> {
             },
               icon: const Icon(Icons.arrow_back, color: AppColors.primaryColor,),)
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20),
-              itemCount: 100,
-              itemBuilder: (context, index) {
-                return const FittedBox(
-                  child: CategoryCard(),
-                );
-              }),
+        body: RefreshIndicator(
+          onRefresh: () async{
+            Get.find<CategoryController>().getCategoryList();
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: GetBuilder<CategoryController>(
+              builder: (categoryController) {
+                return GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        crossAxisSpacing: 4,
+                        mainAxisSpacing: 20),
+                    itemCount: categoryController.categoryModel.data?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      if(categoryController.getCategoryInProgress){
+                        return const Center(child: CircularProgressIndicator(),);
+                      }
+                      return FittedBox(
+                        child: CategoryCard(categoryData: categoryController.categoryModel.data![index],),
+                      );
+                    });
+              }
+            ),
+          ),
         ),
       ),
     );

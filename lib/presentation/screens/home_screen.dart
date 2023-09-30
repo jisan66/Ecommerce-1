@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/state_holders/category_controller.dart';
 import 'package:ecommerce/presentation/state_holders/home_slide_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:ecommerce/presentation/utility/image_assets.dart';
@@ -96,14 +97,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 16,
               ),
               SizedBox(
-                height: 90,
+                height: 120,
                 width: double.infinity,
-                child: ListView.builder(
-                    itemCount: 10,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return const CategoryCard();
-                    }),
+                child: GetBuilder<CategoryController>(
+                  builder: (categoryController) {
+                    if(categoryController.getCategoryInProgress){
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return ListView.builder(
+                        itemCount: categoryController.categoryModel.data?.length ?? 0,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return CategoryCard(categoryData: categoryController.categoryModel.data![index]);
+                        });
+                  }
+                ),
               ),
               const SizedBox(
                 height: 8,
