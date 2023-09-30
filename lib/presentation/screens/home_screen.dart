@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/state_holders/home_slide_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:ecommerce/presentation/utility/image_assets.dart';
 import 'package:ecommerce/presentation/widgets/home_carousel_slider.dart';
@@ -76,7 +77,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
               ),
               const SizedBox(height : 16),
-              const HomeSlider(),
+              GetBuilder<HomeSlideController>(
+                builder: (homeSliderController) {
+                  if(homeSliderController.getHomeSliderInProgress)
+                    {
+                      return const Center(child:  CircularProgressIndicator());
+                    }
+                  return HomeSlider(
+                    sliderData: homeSliderController.sliderModel.data ?? [],
+                  );
+                }
+              ),
               const SizedBox(
                 height: 8,
               ),
