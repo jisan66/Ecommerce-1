@@ -3,6 +3,7 @@ import 'package:ecommerce/presentation/screens/home_screen.dart';
 import 'package:ecommerce/presentation/screens/wish_list_screen.dart';
 import 'package:ecommerce/presentation/state_holders/category_controller.dart';
 import 'package:ecommerce/presentation/state_holders/home_slide_controller.dart';
+import 'package:ecommerce/presentation/state_holders/popular_product_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,6 +31,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Get.find<HomeSlideController>().getHomeSlider();
       Get.find<CategoryController>().getCategoryList();
+      Get.find<PopularProductController>().getPopularProduct();
     });
     super.initState();
   }

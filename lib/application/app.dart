@@ -3,6 +3,7 @@ import 'package:ecommerce/presentation/state_holders/email_verification_controll
 import 'package:ecommerce/presentation/state_holders/home_slide_controller.dart';
 import 'package:ecommerce/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:ecommerce/presentation/state_holders/otp_verification_controller.dart';
+import 'package:ecommerce/presentation/state_holders/popular_product_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -65,4 +66,5 @@ class StateHoldersBinder extends Bindings
     Get.put(OTPVerificationController());
     Get.put(HomeSlideController());
     Get.put(CategoryController());
+    Get.put(PopularProductController());
   }}

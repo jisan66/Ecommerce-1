@@ -1,19 +1,20 @@
+import 'package:ecommerce/data/models/product_data_model.dart';
 import 'package:ecommerce/presentation/screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../utility/app_colors.dart';
-import '../utility/image_assets.dart';
 
 class ProductCard extends StatelessWidget {
+  final ProductData productData;
   const ProductCard({
-    super.key,
+    super.key, required this.productData,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.to(ProductDetailsScreen());
+        Get.to(const ProductDetailsScreen());
       },
       child: Card(
         elevation: 5,
@@ -31,8 +32,8 @@ class ProductCard extends StatelessWidget {
                       topLeft: Radius.circular(8),
                       topRight: Radius.circular(8),
                     ),
-                    image: const DecorationImage(
-                        image: AssetImage(ImageAssets.shoeImage))),
+                    image: DecorationImage(
+                        image: NetworkImage(productData.image ?? ""))),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -41,19 +42,19 @@ class ProductCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "New Year Special Shoe 30",
+                      productData.title ?? "",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontSize: 10,
                           color: Colors.blueGrey.shade600),
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "\$100",
-                          style: TextStyle(
+                          "\$${productData.price ?? 0}",
+                          style: const TextStyle(
                               fontSize: 10,
                               color: AppColors.primaryColor),
                         ),
@@ -61,22 +62,22 @@ class ProductCard extends StatelessWidget {
                           crossAxisAlignment: WrapCrossAlignment.center,
                           alignment: WrapAlignment.center,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.star,
                               size: 15,
                               color: Colors.amber,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 1,
                             ),
                             Text(
-                              "4.5",
-                              style: TextStyle(
+                              "${productData.star}",
+                              style: const TextStyle(
                                   fontSize: 10, color: Colors.black87),
                             ),
                           ],
                         ),
-                        Card(
+                        const Card(
                           color: AppColors.primaryColor,
                           child: Padding(
                             padding: EdgeInsets.all(2.0),

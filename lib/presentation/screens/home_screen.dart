@@ -1,5 +1,7 @@
+import 'package:ecommerce/presentation/screens/product_list_screen.dart';
 import 'package:ecommerce/presentation/state_holders/category_controller.dart';
 import 'package:ecommerce/presentation/state_holders/home_slide_controller.dart';
+import 'package:ecommerce/presentation/state_holders/popular_product_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:ecommerce/presentation/utility/image_assets.dart';
 import 'package:ecommerce/presentation/widgets/home_carousel_slider.dart';
@@ -94,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SectionHeader(title: "All Categories", onTap: () {Get.find<MainBottomNavController>().changeScreen(1);}),
               const SizedBox(
-                height: 16,
+                height: 8,
               ),
               SizedBox(
                 height: 120,
@@ -116,17 +118,26 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 8,
               ),
-              SectionHeader(title: "Popular", onTap: () {Get.find<MainBottomNavController>().changeScreen(3);}),
+              SectionHeader(title: "Popular", onTap: () {Get.to(() => const ProductListScreen());}),
               SizedBox(
                 height: 160,
                 width: double.infinity,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                    itemBuilder: (context, index)
-                {
-                  return const ProductCard();
-                }),
+                child: GetBuilder<PopularProductController>(
+                  builder: (popularProductController) {
+                    if(popularProductController.getPopularProductInProgress){
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: popularProductController.popularProductModel.data?.length ?? 0,
+                        itemBuilder: (context, index)
+                    {
+                      return ProductCard(
+                        productData: popularProductController.popularProductModel.data![index],
+                      );
+                    });
+                  }
+                ),
               ),
               SectionHeader(title: "Special", onTap: () {Get.find<MainBottomNavController>().changeScreen(3);}),
               SizedBox(
@@ -137,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: 20,
                     itemBuilder: (context, index)
                     {
-                      return const ProductCard();
+                      // return const ProductCard();
                     }),
               ),
               SectionHeader(title: "New", onTap: () {Get.find<MainBottomNavController>().changeScreen(3);}),
@@ -149,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: 20,
                     itemBuilder: (context, index)
                     {
-                      return const ProductCard();
+                      // return const ProductCard();
                     }),
               ),
             ],

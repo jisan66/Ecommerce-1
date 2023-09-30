@@ -1,3 +1,5 @@
+import 'package:ecommerce/presentation/screens/main_bottom_nav_screen.dart';
+import 'package:ecommerce/presentation/state_holders/popular_product_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:ecommerce/presentation/widgets/product_card.dart';
 import 'package:flutter/material.dart';
@@ -27,21 +29,28 @@ class _ProductListScreenState extends State<ProductListScreen> {
           centerTitle: true,
           foregroundColor: Colors.transparent,
           backgroundColor: Colors.transparent,
-          leading: const BackButton(
+          leading: BackButton(
             color: AppColors.primaryColor,
+              // Get.find<MainBottomNavController>().changeScreen(0);
+            onPressed : (){Get.to(const MainBottomNavScreen());}
           ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: GridView.builder(
-              gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 0,
-                  mainAxisSpacing: 8),
-              itemCount: 21,
-              itemBuilder: (context, index){
-                return const FittedBox(child: ProductCard());
-              }),
+          child: GetBuilder<PopularProductController>(
+            builder: (popularProductController) {
+              return GridView.builder(
+                  gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 0,
+                      mainAxisSpacing: 8),
+                  itemCount: popularProductController.popularProductModel.data?.length ?? 0,
+                  itemBuilder: (context, index){
+                    return FittedBox(child: ProductCard(productData: popularProductController.popularProductModel.data![index],
+                    ));
+                  });
+            }
+          ),
         ),
       ),
     );
