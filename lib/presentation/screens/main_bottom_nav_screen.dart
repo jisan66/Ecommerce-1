@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../state_holders/main_bottom_nav_controller.dart';
+import '../state_holders/special_product_controller.dart';
 import 'cart_screen.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
@@ -34,6 +35,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
       Get.find<CategoryController>().getCategoryList();
       Get.find<PopularProductController>().getPopularProduct();
       Get.find<NewProductController>().geNewProduct();
+      Get.find<SpecialProductController>().geSpecialProduct();
     });
     super.initState();
   }

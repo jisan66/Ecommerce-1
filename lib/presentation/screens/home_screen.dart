@@ -10,6 +10,7 @@ import 'package:ecommerce/presentation/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../state_holders/main_bottom_nav_controller.dart';
+import '../state_holders/special_product_controller.dart';
 import '../widgets/category_card.dart';
 import '../widgets/circular_icon_button.dart';
 import '../widgets/product_card.dart';
@@ -144,13 +145,22 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 160,
                 width: double.infinity,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 20,
-                    itemBuilder: (context, index)
-                    {
-                      // return const ProductCard();
-                    }),
+                child: GetBuilder<SpecialProductController>(
+                  builder: (specialProductController) {
+                    return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: specialProductController.specialProductModel.data?.length ?? 0,
+                        itemBuilder: (context, index)
+                        {
+                          if(specialProductController.getSpecialProductInProgress){
+                            return const Center(child: CircularProgressIndicator());
+                          }
+                          return ProductCard(
+                            productData: specialProductController.specialProductModel.data![index],
+                          );
+                        });
+                  }
+                ),
               ),
               SectionHeader(title: "New", onTap: () {Get.find<MainBottomNavController>().changeScreen(3);}),
               SizedBox(

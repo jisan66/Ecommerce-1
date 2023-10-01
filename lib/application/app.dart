@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../presentation/screens/splash_screen.dart';
+import '../presentation/state_holders/special_product_controller.dart';
 
 class CraftyBay extends StatelessWidget {
   const CraftyBay({super.key});
@@ -69,4 +70,5 @@ class StateHoldersBinder extends Bindings
     Get.put(CategoryController());
     Get.put(PopularProductController());
     Get.put(NewProductController());
+    Get.put(SpecialProductController());
   }}
