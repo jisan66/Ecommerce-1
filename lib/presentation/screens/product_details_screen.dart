@@ -1,3 +1,5 @@
+import 'package:ecommerce/color_extension.dart';
+import 'package:ecommerce/data/models/product_details_data.dart';
 import 'package:ecommerce/presentation/state_holders/product_details_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:ecommerce/presentation/widgets/custom_stepper.dart';
@@ -25,7 +27,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     Colors.grey
   ];
 
-  List<String> size = ['X', 'XL', '2L', 'L'];
+  //List<String> size = ['X', 'XL', '2L', 'L'];
 
   int _selectedColor= 0;
   late int _selectedSize;
@@ -55,7 +57,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  child: productDetails,
+                  child: productDetails(productDetailsController.productDetails),
                 ),
               ),
               cartToCartBottomContainer
@@ -66,7 +68,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Padding get productDetails {
+  Padding productDetails(ProductDetails productDetails) {
+    List<String> colors = productDetails.color?.split(",") ?? [];
     return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -75,10 +78,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Expanded(
+                      Expanded(
                           child: Text(
-                        "New Year Adidas Special Shoe 30 WXYZ225",
-                        style: TextStyle(
+                        productDetails.product?.title ?? "",
+                        style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             color: Colors.black),
@@ -95,20 +98,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Wrap(
+                      Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         alignment: WrapAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.star,
                             size: 15,
                             color: Colors.amber,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 1,
                           ),
-                          Text("4.5",
-                              style: TextStyle(
+                          Text('${productDetails.product?.star ?? 0}',
+                              style: const TextStyle(
                                   fontSize: 12,
                                   color: Colors.black87,
                                   overflow: TextOverflow.ellipsis)),
@@ -152,7 +155,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     height: 25,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: color.length,
+                        itemCount: colors.length,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
@@ -162,7 +165,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               }
                             },
                             child: CircleAvatar(
-                                backgroundColor: color[index],
+                                backgroundColor: colors[index].toColor(),
                                 child: _selectedColor == index
                                     ? const Icon(
                                         Icons.done,
@@ -186,7 +189,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                   SizedBox(
                     height: 30,
-                    child: SizePicker(size: size, onSelected: (int selectedIndex){
+                    child: SizePicker(size: productDetails.size?.split(",") ?? [], onSelected: (int selectedIndex){
                       _selectedSize = selectedIndex;
                     }, initialSelected: 0  ),
                   ),
@@ -201,8 +204,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   const SizedBox(
                     height: 16,
                   ),
-                  const Text(
-                      'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure')
+                  Text(
+                  productDetails.product?.shortDes ?? "")
                 ],
               ),
             );

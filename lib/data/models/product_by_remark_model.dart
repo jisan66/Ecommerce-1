@@ -1,4 +1,4 @@
-import 'package:ecommerce/data/models/product_data_model.dart';
+import 'package:ecommerce/data/models/product_data.dart';
 
 class ProductByRemarkModel {
   String? msg;
