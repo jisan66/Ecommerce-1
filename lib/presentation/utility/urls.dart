@@ -5,4 +5,5 @@ class Urls{
   static String verifyEmail(String email, String otp) => "$baseUrl/VerifyLogin/$email/$otp";
   static String homeSlider = "$baseUrl/ListProductSlider";
   static String categoryList = "$baseUrl/CategoryList";
+  static String getProductDetails(int id) => "$baseUrl/ProductDetailsById/$id";
 }

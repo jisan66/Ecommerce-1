@@ -1,12 +1,16 @@
+import 'package:ecommerce/presentation/state_holders/product_details_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:ecommerce/presentation/widgets/custom_stepper.dart';
 import 'package:ecommerce/presentation/widgets/product_details_carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../widgets/size_picker.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key});
+  const ProductDetailsScreen({super.key, required this.productId});
+
+  final int productId;
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -27,19 +31,37 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   late int _selectedSize;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<ProductDetailsController>().getProductDetails(widget.productId);
+    });
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: productDetailsAppBar,
-      body: Column(
-        children: [
-          const ProductImageSlider(),
-          Expanded(
-            child: SingleChildScrollView(
-              child: productDetails,
-            ),
-          ),
-          cartToCartBottomContainer
-        ],
+      body: GetBuilder<ProductDetailsController>(
+        builder: (productDetailsController) {
+          return Column(
+            children: [
+              ProductImageSlider(
+                imageList: [productDetailsController.productDetails.img1 ?? "",
+                  productDetailsController.productDetails.img2 ?? "",
+                  productDetailsController.productDetails.img3 ?? "",
+                  productDetailsController.productDetails.img4 ?? ""],
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: productDetails,
+                ),
+              ),
+              cartToCartBottomContainer
+            ],
+          );
+        }
       ),
     );
   }
@@ -135,7 +157,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           return InkWell(
                             onTap: () {
                               _selectedColor = index;
-                              if (mounted) {
+                              if(mounted) {
                                 setState(() {});
                               }
                             },
