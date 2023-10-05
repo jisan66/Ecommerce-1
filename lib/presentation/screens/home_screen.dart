@@ -79,24 +79,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-
               ),
-              const SizedBox(height : 16),
-              GetBuilder<HomeSlideController>(
-                builder: (homeSliderController) {
-                  if(homeSliderController.getHomeSliderInProgress)
-                    {
-                      return const Center(child:  CircularProgressIndicator());
-                    }
-                  return HomeSlider(
-                    sliderData: homeSliderController.sliderModel.data ?? [],
-                  );
+              const SizedBox(height: 16),
+              GetBuilder<HomeSlideController>(builder: (homeSliderController) {
+                if (homeSliderController.getHomeSliderInProgress) {
+                  return const Center(child: CircularProgressIndicator());
                 }
-              ),
+                return HomeSlider(
+                  sliderData: homeSliderController.sliderModel.data ?? [],
+                );
+              }),
               const SizedBox(
                 height: 8,
               ),
-              SectionHeader(title: "All Categories", onTap: () {Get.find<MainBottomNavController>().changeScreen(1);}),
+              SectionHeader(
+                  title: "All Categories",
+                  onTap: () {
+                    Get.find<MainBottomNavController>().changeScreen(1);
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -104,82 +104,100 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 120,
                 width: double.infinity,
                 child: GetBuilder<CategoryController>(
-                  builder: (categoryController) {
-                    if(categoryController.getCategoryInProgress){
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    return ListView.builder(
-                        itemCount: categoryController.categoryModel.data?.length ?? 0,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return CategoryCard(categoryData: categoryController.categoryModel.data![index]);
-                        });
+                    builder: (categoryController) {
+                  if (categoryController.getCategoryInProgress) {
+                    return const Center(child: CircularProgressIndicator());
                   }
-                ),
+                  return ListView.builder(
+                      itemCount:
+                          categoryController.categoryModel.data?.length ?? 0,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return CategoryCard(
+                            categoryData:
+                                categoryController.categoryModel.data![index]);
+                      });
+                }),
               ),
               const SizedBox(
                 height: 8,
               ),
-              SectionHeader(title: "Popular", onTap: () {Get.to(() => const ProductListScreen());}),
+              SectionHeader(
+                  title: "Popular",
+                  onTap: () {
+                    Get.to(() => const ProductListScreen());
+                  }),
               SizedBox(
                 height: 160,
                 width: double.infinity,
                 child: GetBuilder<PopularProductController>(
-                  builder: (popularProductController) {
-                    if(popularProductController.getPopularProductInProgress){
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    return ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: popularProductController.popularProductModel.data?.length ?? 0,
-                        itemBuilder: (context, index)
-                    {
-                      return ProductCard(
-                        productData: popularProductController.popularProductModel.data![index],
-                      );
-                    });
+                    builder: (popularProductController) {
+                  if (popularProductController.getPopularProductInProgress) {
+                    return const Center(child: CircularProgressIndicator());
                   }
-                ),
+                  return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: popularProductController
+                              .popularProductModel.data?.length ??
+                          0,
+                      itemBuilder: (context, index) {
+                        return ProductCard(
+                          productData: popularProductController
+                              .popularProductModel.data![index],
+                        );
+                      });
+                }),
               ),
-              SectionHeader(title: "Special", onTap: () {Get.find<MainBottomNavController>().changeScreen(3);}),
+              SectionHeader(
+                  title: "Special",
+                  onTap: () {
+                    Get.find<MainBottomNavController>().changeScreen(3);
+                  }),
               SizedBox(
                 height: 160,
                 width: double.infinity,
                 child: GetBuilder<SpecialProductController>(
-                  builder: (specialProductController) {
-                    return ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: specialProductController.specialProductModel.data?.length ?? 0,
-                        itemBuilder: (context, index)
-                        {
-                          if(specialProductController.getSpecialProductInProgress){
-                            return const Center(child: CircularProgressIndicator());
-                          }
-                          return ProductCard(
-                            productData: specialProductController.specialProductModel.data![index],
-                          );
-                        });
+                    builder: (specialProductController) {
+                  if (specialProductController.getSpecialProductInProgress) {
+                    return const Center(child: CircularProgressIndicator());
                   }
-                ),
+                  return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: specialProductController
+                              .specialProductModel.data?.length ??
+                          0,
+                      itemBuilder: (context, index) {
+                        return ProductCard(
+                          productData: specialProductController
+                              .specialProductModel.data![index],
+                        );
+                      });
+                }),
               ),
-              SectionHeader(title: "New", onTap: () {Get.find<MainBottomNavController>().changeScreen(3);}),
+              SectionHeader(
+                  title: "New",
+                  onTap: () {
+                    Get.find<MainBottomNavController>().changeScreen(3);
+                  }),
               SizedBox(
                 height: 160,
                 width: double.infinity,
                 child: GetBuilder<NewProductController>(
-                  builder: (newProductController) {
-                    if(newProductController.getNewProductInProgress){
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    return ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: newProductController.newProductModel.data?.length ?? 0,
-                        itemBuilder: (context, index)
-                        {
-                          return ProductCard(productData: newProductController.newProductModel.data![index]);
-                        });
+                    builder: (newProductController) {
+                  if (newProductController.getNewProductInProgress) {
+                    return const Center(child: CircularProgressIndicator());
                   }
-                ),
+                  return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount:
+                          newProductController.newProductModel.data?.length ??
+                              0,
+                      itemBuilder: (context, index) {
+                        return ProductCard(
+                            productData: newProductController
+                                .newProductModel.data![index]);
+                      });
+                }),
               ),
             ],
           ),
@@ -188,5 +206,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-

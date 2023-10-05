@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:ecommerce/presentation/state_holders/category_controller.dart';
 import 'package:ecommerce/presentation/state_holders/email_verification_controller.dart';
 import 'package:ecommerce/presentation/state_holders/home_slide_controller.dart';
@@ -13,12 +14,19 @@ import 'package:get/get.dart';
 import '../presentation/screens/splash_screen.dart';
 import '../presentation/state_holders/special_product_controller.dart';
 
-class CraftyBay extends StatelessWidget {
+class CraftyBay extends StatefulWidget {
+  static GlobalKey<NavigatorState> globalKey = GlobalKey<NavigatorState>();
   const CraftyBay({super.key});
 
   @override
+  State<CraftyBay> createState() => _CraftyBayState();
+}
+
+class _CraftyBayState extends State<CraftyBay> {
+  @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      navigatorKey: CraftyBay.globalKey,
       debugShowCheckedModeBanner:false,
       initialBinding: StateHoldersBinder(),
       home: const SplashScreen(),
@@ -73,4 +81,5 @@ class StateHoldersBinder extends Bindings
     Get.put(NewProductController());
     Get.put(SpecialProductController());
     Get.put(ProductDetailsController());
+    Get.put(AddToCartController());
   }}

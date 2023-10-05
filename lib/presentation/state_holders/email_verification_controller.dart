@@ -12,7 +12,7 @@ class EmailVerificationController extends GetxController {
     _emailVerificationInProgress = true;
     update();
     final NetworkResponse response =
-        await NetworkCaller().getRequest(Urls.sendOTPtoEmail(email));
+        await NetworkCaller.getRequest(Urls.sendOTPtoEmail(email));
     _emailVerificationInProgress = false;
     update();
     if (response.isSuccess == true) {

@@ -9,14 +9,21 @@ class ProductDetailsController extends GetxController{
   bool _getProductDetailsInProgress = false;
   bool get getProductDetailsInProgress => _getProductDetailsInProgress;
 
+  List<String> colors=[];
+  List<String> sizes=[];
+
   ProductDetails productDetails = ProductDetails();
 
   Future<bool> getProductDetails(int id) async{
     _getProductDetailsInProgress = true;
-    NetworkResponse response = await NetworkCaller().getRequest(Urls.getProductDetails(id));
+    NetworkResponse response = await NetworkCaller.getRequest(Urls.getProductDetails(id));
     _getProductDetailsInProgress = false;
     if(response.isSuccess){
       productDetails = (ProductDetailsModel.fromJson(response.responseBody ?? {})).data!.first;
+      colors = productDetails.color?.split(",") ?? [];
+      print(colors.toString());
+      sizes = productDetails.size?.split(",") ?? [];
+      print(sizes.toString());
       update();
       return true;
     }

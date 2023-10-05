@@ -39,16 +39,21 @@ class _ProductListScreenState extends State<ProductListScreen> {
           padding: const EdgeInsets.all(8.0),
           child: GetBuilder<PopularProductController>(
             builder: (popularProductController) {
-              return GridView.builder(
-                  gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 0,
-                      mainAxisSpacing: 8),
-                  itemCount: popularProductController.popularProductModel.data?.length ?? 0,
-                  itemBuilder: (context, index){
-                    return FittedBox(child: ProductCard(productData: popularProductController.popularProductModel.data![index],
-                    ));
-                  });
+              return Column(
+                children: [
+                  GridView.builder(
+                      gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 0,
+                          mainAxisSpacing: 8),
+                      itemCount: popularProductController.popularProductModel.data?.length ?? 0,
+                      itemBuilder: (context, index){
+                        return FittedBox(child: ProductCard(productData: popularProductController.popularProductModel.data![index],
+                        ));
+                      }),
+
+                ],
+              );
             }
           ),
         ),

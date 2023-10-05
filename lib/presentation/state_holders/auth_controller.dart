@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthController {
   static String? _accessToken;
 
-  String? get token => _accessToken;
+  static String? get token => _accessToken;
 
   static Future<void> setAccessToken(String token) async {
     final SharedPreferences sharedPreference =
@@ -16,6 +16,13 @@ class AuthController {
     final SharedPreferences sharedPreference =
         await SharedPreferences.getInstance();
     _accessToken = sharedPreference.getString("access_token");
+  }
+
+
+  static Future<void> clear() async {
+    final SharedPreferences sharedPreference =
+        await SharedPreferences.getInstance();
+    await sharedPreference.clear();
   }
 
   static bool get isLoggedIn {
