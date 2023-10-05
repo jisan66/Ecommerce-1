@@ -115,7 +115,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index) {
                         return CategoryCard(
                             categoryData:
-                                categoryController.categoryModel.data![index]);
+                                categoryController.categoryModel.data![index],
+                            onTap: () {
+                              Get.to(() => ProductListScreen(
+                                  categoryId: categoryController.categoryModel.data![index].id!
+                              ));
+                            });
                       });
                 }),
               ),
@@ -125,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SectionHeader(
                   title: "Popular",
                   onTap: () {
-                    Get.to(() => const ProductListScreen());
+                   // Get.to(() => const ProductListScreen());
                   }),
               SizedBox(
                 height: 160,

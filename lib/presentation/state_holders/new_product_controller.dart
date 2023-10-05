@@ -1,4 +1,4 @@
-import 'package:ecommerce/data/models/product_by_remark_model.dart';
+import 'package:ecommerce/data/models/product_model.dart';
 import 'package:get/get.dart';
 
 import '../../data/models/network_response.dart';
@@ -9,7 +9,7 @@ class NewProductController extends GetxController{
   bool _getNewProductInProgress = false;
   bool get getNewProductInProgress => _getNewProductInProgress;
 
-  ProductByRemarkModel newProductModel = ProductByRemarkModel();
+  ProductModel newProductModel = ProductModel();
 
   Future<bool> geNewProduct() async{
     _getNewProductInProgress = true;
@@ -17,7 +17,7 @@ class NewProductController extends GetxController{
     NetworkResponse response = await NetworkCaller.getRequest(Urls.productsByRemarks("new"));
     _getNewProductInProgress = false;
     if(response.isSuccess){
-      newProductModel = ProductByRemarkModel.fromJson(response.responseBody ?? {});
+      newProductModel = ProductModel.fromJson(response.responseBody ?? {});
       update();
       return true;
     }

@@ -1,4 +1,4 @@
-import 'package:ecommerce/data/models/product_by_remark_model.dart';
+import 'package:ecommerce/data/models/product_model.dart';
 import 'package:get/get.dart';
 
 import '../../data/models/network_response.dart';
@@ -9,7 +9,7 @@ class SpecialProductController extends GetxController{
   bool _getSpecialProductInProgress = false;
   bool get getSpecialProductInProgress => _getSpecialProductInProgress;
 
-  ProductByRemarkModel specialProductModel = ProductByRemarkModel();
+  ProductModel specialProductModel = ProductModel();
 
   Future<bool> geSpecialProduct() async{
     _getSpecialProductInProgress = true;
@@ -17,7 +17,7 @@ class SpecialProductController extends GetxController{
     NetworkResponse response = await NetworkCaller.getRequest(Urls.productsByRemarks("special"));
     _getSpecialProductInProgress = false;
     if(response.isSuccess){
-      specialProductModel = ProductByRemarkModel.fromJson(response.responseBody ?? {});
+      specialProductModel = ProductModel.fromJson(response.responseBody ?? {});
       update();
       return true;
     }

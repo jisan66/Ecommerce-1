@@ -1,12 +1,12 @@
 import 'package:ecommerce/data/models/product_data.dart';
 
-class ProductByRemarkModel {
+class ProductModel {
   String? msg;
   List<ProductData>? data;
 
-  ProductByRemarkModel({this.msg, this.data});
+  ProductModel({this.msg, this.data});
 
-  ProductByRemarkModel.fromJson(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
       data = <ProductData>[];

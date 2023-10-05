@@ -7,6 +7,7 @@ import 'package:ecommerce/presentation/state_holders/new_product_controller.dart
 import 'package:ecommerce/presentation/state_holders/otp_verification_controller.dart';
 import 'package:ecommerce/presentation/state_holders/popular_product_controller.dart';
 import 'package:ecommerce/presentation/state_holders/product_details_controller.dart';
+import 'package:ecommerce/presentation/state_holders/products_by_category_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -82,4 +83,5 @@ class StateHoldersBinder extends Bindings
     Get.put(SpecialProductController());
     Get.put(ProductDetailsController());
     Get.put(AddToCartController());
+    Get.put(ProductsByCategoryController());
   }}
