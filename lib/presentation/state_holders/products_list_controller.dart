@@ -4,17 +4,17 @@ import 'package:ecommerce/data/utility/network_caller.dart';
 import 'package:ecommerce/presentation/utility/urls.dart';
 import 'package:get/get.dart';
 
-class ProductsByCategoryController extends GetxController{
-  bool _getProductsByCategoryInProgress = false;
-  bool get getProductsByCategoryInProgress => _getProductsByCategoryInProgress;
+class ProductsListController extends GetxController{
+  bool _getProductListInProgress = false;
+  bool get getProductListInProgress => _getProductListInProgress;
 
   ProductModel productModel = ProductModel();
 
   Future<bool> getProductsByCategory(int categoryId) async{
-    _getProductsByCategoryInProgress = true;
+    _getProductListInProgress = true;
     update();
     NetworkResponse response = await NetworkCaller.getRequest(Urls.getProductsByCategory(categoryId));
-    _getProductsByCategoryInProgress = false;
+    _getProductListInProgress = false;
     update();
     if(response.isSuccess){
       productModel = ProductModel.fromJson(response.responseBody ?? {});
@@ -25,5 +25,8 @@ class ProductsByCategoryController extends GetxController{
       return false;
     }
   }
-
+  void setModel(ProductModel productModel1){
+    productModel = productModel1;
+    update();
+  }
 }

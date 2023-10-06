@@ -1,4 +1,4 @@
-import 'package:ecommerce/presentation/screens/product_list_screen.dart';
+import 'package:ecommerce/presentation/screens/products_list_screen.dart';
 import 'package:ecommerce/presentation/state_holders/category_controller.dart';
 import 'package:ecommerce/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
@@ -60,7 +60,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           child: CategoryCard(categoryData: categoryController
                               .categoryModel.data![index],
                               onTap: () {
-                                Get.to(() => ProductListScreen(
+                                Get.to(() => ProductListScreen(appBarName: categoryController.categoryModel.data![index].categoryName!,
                                   categoryId: categoryController.categoryModel.data![index].id!,
                                 ));
                                 }),

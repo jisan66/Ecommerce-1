@@ -1,4 +1,4 @@
-import 'package:ecommerce/presentation/screens/product_list_screen.dart';
+import 'package:ecommerce/presentation/screens/products_list_screen.dart';
 import 'package:ecommerce/presentation/state_holders/category_controller.dart';
 import 'package:ecommerce/presentation/state_holders/home_slide_controller.dart';
 import 'package:ecommerce/presentation/state_holders/new_product_controller.dart';
@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             categoryData:
                                 categoryController.categoryModel.data![index],
                             onTap: () {
-                              Get.to(() => ProductListScreen(
+                              Get.to(() => ProductListScreen(appBarName : categoryController.categoryModel.data![index].categoryName!,productModel: null,
                                   categoryId: categoryController.categoryModel.data![index].id!
                               ));
                             });
@@ -129,8 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SectionHeader(
                   title: "Popular",
-                  onTap: () {
-                   // Get.to(() => const ProductListScreen());
+                  onTap: () {Get.to(()=> ProductListScreen(appBarName: "Popular Products",categoryId: null,productModel:
+                   Get.find<PopularProductController>().popularProductModel));
                   }),
               SizedBox(
                 height: 160,
@@ -155,8 +155,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SectionHeader(
                   title: "Special",
-                  onTap: () {
-                    Get.find<MainBottomNavController>().changeScreen(3);
+                  onTap: () {Get.to(()=> ProductListScreen(appBarName: "Special Products",
+                      categoryId: null,productModel:
+                    Get.find<SpecialProductController>().specialProductModel));
                   }),
               SizedBox(
                 height: 160,
@@ -182,7 +183,8 @@ class _HomeScreenState extends State<HomeScreen> {
               SectionHeader(
                   title: "New",
                   onTap: () {
-                    Get.find<MainBottomNavController>().changeScreen(3);
+                    Get.to(()=> ProductListScreen(appBarName: "New Products",categoryId: null,productModel:
+                    Get.find<NewProductController>().newProductModel));
                   }),
               SizedBox(
                 height: 160,
