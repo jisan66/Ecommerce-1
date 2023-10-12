@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ecommerce/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:ecommerce/presentation/state_holders/cart_list_controller.dart';
 import 'package:ecommerce/presentation/state_holders/category_controller.dart';
@@ -12,12 +14,12 @@ import 'package:ecommerce/presentation/state_holders/products_list_controller.da
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../presentation/screens/splash_screen.dart';
 import '../presentation/state_holders/special_product_controller.dart';
 
 class CraftyBay extends StatefulWidget {
   static GlobalKey<NavigatorState> globalKey = GlobalKey<NavigatorState>();
+
   const CraftyBay({super.key});
 
   @override
@@ -25,53 +27,92 @@ class CraftyBay extends StatefulWidget {
 }
 
 class _CraftyBayState extends State<CraftyBay> {
+
+  @override
+  void initState() {
+    checkInitialConnectivity();
+    checkConnectivityStatus();
+    super.initState();
+  }
+
+  late final StreamSubscription _connectivityStatusStream;
+
+  void checkInitialConnectivity() async{
+    final result = await Connectivity().checkConnectivity();
+    handleConnectivityStatus(result);
+  }
+
+  void checkConnectivityStatus() {
+    _connectivityStatusStream =
+        Connectivity().onConnectivityChanged.listen((status) {
+          handleConnectivityStatus(status);
+        });
+  }
+
+  void handleConnectivityStatus(ConnectivityResult result) {
+    if (result != ConnectivityResult.mobile &&
+        result != ConnectivityResult.wifi) {
+      Get.showSnackbar(const GetSnackBar(
+        title: 'No Internet',
+        message: 'Please Check Internet Connection',
+        isDismissible: false,));
+    }
+    else{
+      if(Get.isSnackbarOpen){
+        Get.closeAllSnackbars();
+      }
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       navigatorKey: CraftyBay.globalKey,
-      debugShowCheckedModeBanner:false,
+      debugShowCheckedModeBanner: false,
       initialBinding: StateHoldersBinder(),
       home: const SplashScreen(),
       theme: ThemeData(
           primarySwatch:
-              MaterialColor(AppColors.primaryColor.value, AppColors().color),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            // side: const BorderSide(
-            //   width: double.infinity
-            // ),
-            textStyle: const TextStyle(
-              fontSize: 16,
-              letterSpacing: 0.5,
-              fontWeight: FontWeight.w600,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8)
-            )
-          )
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color : Colors.yellow),
+          MaterialColor(AppColors.primaryColor.value, AppColors().color),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  // side: const BorderSide(
+                  //   width: double.infinity
+                  // ),
+                  textStyle: const TextStyle(
+                    fontSize: 16,
+                    letterSpacing: 0.5,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)
+                  )
+              )
           ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey)
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color : Colors.red)
+          inputDecorationTheme: const InputDecorationTheme(
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.yellow),
+              ),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey)
+              ),
+              disabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red)
+              )
           )
-        )
       ),
     );
   }
+  @override
+  void dispose(){
+    _connectivityStatusStream.cancel();
+    super.dispose();
+  }
 }
 
-class StateHoldersBinder extends Bindings
-{
-
-
-
+class StateHoldersBinder extends Bindings {
   @override
   void dependencies() {
     Get.put(MainBottomNavController());
@@ -86,4 +127,8 @@ class StateHoldersBinder extends Bindings
     Get.put(AddToCartController());
     Get.put(ProductsListController());
     Get.put(CartListController());
-  }}
+  }
+
+
+
+}

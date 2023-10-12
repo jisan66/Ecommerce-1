@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/screens/home_screen.dart';
 import 'package:ecommerce/presentation/screens/main_bottom_nav_screen.dart';
 import 'package:ecommerce/presentation/state_holders/otp_verification_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
@@ -151,7 +152,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("OTP Verified Successfully!")));
-        Get.to(() => const MainBottomNavScreen());
+        Get.to(() => const HomeScreen());
       }
     } else {
       if (mounted) {
