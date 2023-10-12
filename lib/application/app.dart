@@ -1,4 +1,5 @@
 import 'package:ecommerce/presentation/state_holders/add_to_cart_controller.dart';
+import 'package:ecommerce/presentation/state_holders/cart_list_controller.dart';
 import 'package:ecommerce/presentation/state_holders/category_controller.dart';
 import 'package:ecommerce/presentation/state_holders/email_verification_controller.dart';
 import 'package:ecommerce/presentation/state_holders/home_slide_controller.dart';
@@ -84,4 +85,5 @@ class StateHoldersBinder extends Bindings
     Get.put(ProductDetailsController());
     Get.put(AddToCartController());
     Get.put(ProductsListController());
+    Get.put(CartListController());
   }}

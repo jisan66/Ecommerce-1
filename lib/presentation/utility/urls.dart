@@ -7,5 +7,6 @@ class Urls{
   static String homeSlider = "$baseUrl/ListProductSlider";
   static String categoryList = "$baseUrl/CategoryList";
   static const String addToCart = "$baseUrl/CreateCartList";
+  static const String getCartList = "$baseUrl/CartList";
   static String getProductDetails(int id) => "$baseUrl/ProductDetailsById/$id";
 }

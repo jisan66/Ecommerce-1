@@ -1,12 +1,15 @@
+import 'package:ecommerce/presentation/state_holders/cart_list_controller.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import '../../data/models/car_list_model.dart';
 import '../utility/app_colors.dart';
 import '../utility/image_assets.dart';
 import 'custom_stepper.dart';
 
 class CartScreenCard extends StatelessWidget {
+  final CartData cartData;
   const CartScreenCard({
-    super.key,
+    super.key, required this.cartData,
   });
 
   @override
@@ -42,7 +45,7 @@ class CartScreenCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Adidas Shoe New Year Model wwk557",
+                                cartData.product?.title ?? "",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 18,
@@ -52,11 +55,11 @@ class CartScreenCard extends StatelessWidget {
                                 height: 4,
                               ),
                               RichText(
-                                  text: const TextSpan(
-                                      style: TextStyle(color: Colors.black45),
+                                  text: TextSpan(
+                                      style: const TextStyle(color: Colors.black45),
                                       children: [
-                                        TextSpan(text: "Color: Red,"),
-                                        TextSpan(text: "Size: X")
+                                        TextSpan(text: "Color: ${cartData.color}"),
+                                        TextSpan(text: "Size: ${cartData.size}")
                                       ]))
                             ],
                           ),
@@ -83,8 +86,10 @@ class CartScreenCard extends StatelessWidget {
                             lowerLimit: 1,
                             upperLimit: 20,
                             stepValue: 1,
-                            value: 1,
-                            onChange: (int value) {})
+                            value: cartData.numberOfProducts,
+                            onChange: (int value) {
+                              Get.find<CartListController>().changeNumberOfProduct(cartData.id!, value);
+                            })
                       ],
                     )
                   ],
