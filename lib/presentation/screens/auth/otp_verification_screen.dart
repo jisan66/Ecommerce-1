@@ -1,5 +1,3 @@
-import 'package:ecommerce/presentation/screens/home_screen.dart';
-import 'package:ecommerce/presentation/screens/main_bottom_nav_screen.dart';
 import 'package:ecommerce/presentation/state_holders/otp_verification_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../state_holders/main_bottom_nav_controller.dart';
 import '../../utility/image_assets.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
@@ -152,7 +151,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("OTP Verified Successfully!")));
-        Get.to(() => const HomeScreen());
+        Get.find<MainBottomNavController>().backToHome();
       }
     } else {
       if (mounted) {

@@ -1,12 +1,12 @@
 import 'package:ecommerce/data/models/product_model.dart';
 import 'package:get/get.dart';
-
 import '../../data/models/network_response.dart';
 import '../../data/utility/network_caller.dart';
 import '../utility/urls.dart';
 
 class NewProductController extends GetxController{
   bool _getNewProductInProgress = false;
+
   bool get getNewProductInProgress => _getNewProductInProgress;
 
   ProductModel newProductModel = ProductModel();

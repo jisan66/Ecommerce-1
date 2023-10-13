@@ -6,6 +6,7 @@ import 'package:ecommerce/presentation/state_holders/category_controller.dart';
 import 'package:ecommerce/presentation/state_holders/home_slide_controller.dart';
 import 'package:ecommerce/presentation/state_holders/new_product_controller.dart';
 import 'package:ecommerce/presentation/state_holders/popular_product_controller.dart';
+import 'package:ecommerce/presentation/state_holders/wish_list_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,6 +39,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
       Get.find<NewProductController>().geNewProduct();
       Get.find<SpecialProductController>().geSpecialProduct();
       Get.find<CartListController>().getCartList();
+      Get.find<WishListController>().getWishList();
     });
     super.initState();
   }

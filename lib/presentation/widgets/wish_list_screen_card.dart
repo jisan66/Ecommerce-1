@@ -1,16 +1,12 @@
-import 'package:ecommerce/presentation/state_holders/cart_list_controller.dart';
+import 'package:ecommerce/data/models/wish_list_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../data/models/car_list_model.dart';
 import '../utility/app_colors.dart';
 import '../utility/image_assets.dart';
-import 'custom_stepper.dart';
 
-class CartScreenCard extends StatelessWidget {
-
-  final CartData cartData;
-  const CartScreenCard({
-    super.key, required this.cartData,
+class WishListScreenCard extends StatelessWidget {
+  final WishListData wishListData;
+  const WishListScreenCard({
+    super.key, required this.wishListData,
   });
 
   @override
@@ -46,7 +42,7 @@ class CartScreenCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                cartData.product?.title ?? "",
+                                wishListData.product?.title ?? "",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 18,
@@ -59,8 +55,8 @@ class CartScreenCard extends StatelessWidget {
                                   text: TextSpan(
                                       style: const TextStyle(color: Colors.black45),
                                       children: [
-                                        TextSpan(text: "Color: ${cartData.color}"),
-                                        TextSpan(text: "Size: ${cartData.size}")
+                                        TextSpan(text: "Created At: ${wishListData.createdAt}\n"),
+                                        TextSpan(text: "Updated At: ${wishListData.updatedAt}")
                                       ]))
                             ],
                           ),
@@ -73,24 +69,16 @@ class CartScreenCard extends StatelessWidget {
                             ))
                       ],
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           "\$100",
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
                               color: AppColors.primaryColor),
                         ),
-                        CustomStepper(
-                            lowerLimit: 1,
-                            upperLimit: 20,
-                            stepValue: 1,
-                            value: cartData.numberOfProducts,
-                            onChange: (int value) {
-                              Get.find<CartListController>().changeNumberOfProduct(cartData.id!, value);
-                            })
                       ],
                     )
                   ],

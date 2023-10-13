@@ -11,6 +11,7 @@ import 'package:ecommerce/presentation/state_holders/otp_verification_controller
 import 'package:ecommerce/presentation/state_holders/popular_product_controller.dart';
 import 'package:ecommerce/presentation/state_holders/product_details_controller.dart';
 import 'package:ecommerce/presentation/state_holders/products_list_controller.dart';
+import 'package:ecommerce/presentation/state_holders/wish_list_controller.dart';
 import 'package:ecommerce/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -127,6 +128,7 @@ class StateHoldersBinder extends Bindings {
     Get.put(AddToCartController());
     Get.put(ProductsListController());
     Get.put(CartListController());
+    Get.put(WishListController());
   }
 
 
