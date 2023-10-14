@@ -7,10 +7,10 @@ import '../utility/image_assets.dart';
 import 'custom_stepper.dart';
 
 class CartScreenCard extends StatelessWidget {
-
+  final VoidCallback onDelete;
   final CartData cartData;
   const CartScreenCard({
-    super.key, required this.cartData,
+    super.key, required this.cartData, required this.onDelete,
   });
 
   @override
@@ -66,7 +66,7 @@ class CartScreenCard extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: onDelete,
                             icon: const Icon(
                               Icons.delete_outlined,
                               color: Colors.black54,

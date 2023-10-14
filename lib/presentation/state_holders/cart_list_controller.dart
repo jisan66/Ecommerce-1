@@ -40,4 +40,16 @@ class CartListController extends GetxController {
     }
     update();
   }
+
+  Future<bool> deleteCartList(int productID) async{
+  NetworkResponse response = await NetworkCaller.getRequest(Urls.deleteCartList(productID));
+  if(response.isSuccess){
+    cartListModel.data!.removeWhere((element) => element.productId==productID);
+    update();
+    return true;
+  }
+  else{
+    return false;
+  }
+  }
 }

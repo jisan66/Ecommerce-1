@@ -9,5 +9,6 @@ class Urls{
   static const String addToCart = "$baseUrl/CreateCartList";
   static const String getCartList = "$baseUrl/CartList";
   static String getProductDetails(int id) => "$baseUrl/ProductDetailsById/$id";
+  static String deleteCartList(int id) => "$baseUrl/DeleteCartList/$id";
   static String getWishList = "$baseUrl/ProductWishList";
 }

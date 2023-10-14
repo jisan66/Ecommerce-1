@@ -51,7 +51,10 @@ class _CartScreenState extends State<CartScreen> {
                     child: ListView.builder(
                         itemCount: cartListController.cartListModel.data?.length ?? 0,
                         itemBuilder: (context, index) {
-                          return CartScreenCard(cartData: cartListController.cartListModel.data![index]);
+                          return CartScreenCard(cartData: cartListController.cartListModel.data![index],
+                          onDelete: (){
+                            Get.find<CartListController>().deleteCartList(cartListController.cartListModel.data![index].productId ?? 0);
+                          },);
                         }),
                   )
                 ],
